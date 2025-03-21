@@ -1,0 +1,12 @@
+def count_words(text):
+    freq = {}
+    for word in text.lower().split():
+        word = ''.join(filter(str.isalnum, word))  # Remove punctuation
+        if word:
+            freq[word] = freq.get(word, 0) + 1
+    return freq
+
+def main():
+    sample = "The quick brown fox jumps over the lazy dog. The fox was quick."
+    frequencies = count_words(sample)
+    print(frequencies)
