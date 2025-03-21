@@ -9,4 +9,4 @@ def count_words(text):
 def main():
     sample = "The quick brown fox jumps over the lazy dog. The fox was quick."
     frequencies = count_words(sample)
-    print(frequencies)
+    
