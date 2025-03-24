@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "latencyai"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI Performance Engineer"
 authors = ["Graphsignal, Inc. <devops@graphsignal.com>"]
 license = "MIT"
@@ -27,6 +27,7 @@ python = ">=3.9"
 python-dateutil = "*"
 pydantic = ">2"
 typing-extensions = ">4.7.1"
+numpy = "*"
 torch = "*"
 openai = "*"
 

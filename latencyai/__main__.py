@@ -38,7 +38,7 @@ async def optimize_script(script_path, num_runs=2):
 
             if attempt == 1:
                 torch.cuda.is_available()
-                chat.user(f"Convert provided Python code to utilize GPU offloading, data parallel, task parallel, latency hiding, and other techniques to optimize performance. Use numpy and torch modules. Provide a runnable python code. The code will be benchmarked by calling main() multiple times.")
+                chat.user(f"Convert provided Python code to utilize GPU offloading, data parallel, task parallel, latency hiding, and other techniques to optimize performance. Use numpy and torch modules. Provide a runnable python code. Do not add logging or print statements. The code will be benchmarked by calling main() multiple times.")
                 chat.user(original_code)
                 chat.user(f"Benchmark result for original code: {original_result.avg_time_per_op_ns} ns/op")
                 if torch.cuda.is_available():
@@ -72,9 +72,9 @@ async def optimize_script(script_path, num_runs=2):
 
     if best_result:
         if best_result.avg_time_per_op_ns >= original_result.avg_time_per_op_ns:
-            logger.debug(f"Code was not optimized.")
+            logger.info(f"Code was not optimized.")
         else:
-            logger.debug(f"Code was optimized. Optimized time: {best_result.avg_time_per_op_ns} ns/op. Speedup: {original_result.avg_time_per_op_ns / best_result.avg_time_per_op_ns:.2f}")
+            logger.info(f"Code was optimized. Optimized time: {best_result.avg_time_per_op_ns} ns/op. Speedup: {original_result.avg_time_per_op_ns / best_result.avg_time_per_op_ns:.2f}")
 
             dir_name, base_name = os.path.split(script_path)
             name, ext = os.path.splitext(base_name)
@@ -82,9 +82,9 @@ async def optimize_script(script_path, num_runs=2):
             optimized_script_path = os.path.join(dir_name, optimized_name)
             with open(optimized_script_path, 'w', encoding='utf-8') as f:
                 f.write(best_result.code)
-            logger.debug(f"Optimized script saved to {optimized_script_path}")
+            logger.info(f"Optimized script saved to {optimized_script_path}")
     else:
-        logger.debug(f"No optimization results.")
+        logger.info(f"No optimization results.")
 
     await chat.close()
 

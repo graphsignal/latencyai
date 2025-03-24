@@ -4,7 +4,7 @@
 
 LatencyAI is an AI agent that optimizes any Python code for best performance using reasoning LLMs. It iteratively profiles, optimizes, and benchmarks the code. The goal is to optimize code by GPU offloading, using data/task parallel, latency hiding and other techniques.
 
-**Note: this is an experimental library.**
+**Note: this is an experimental library. Subscribe for updates at [latency.ai](https://latency.ai).**
 
 ## Installation
 

@@ -19,7 +19,8 @@ class BenchmarkResult(BaseModel):
 async def run_benchmark(code: str, timeout=60) -> tuple[BenchmarkResult, str]:
     logger.debug("Benchmarking provided code.")
 
-    main_path = os.path.join(os.getcwd(), "latencyai", "benchmark_main.py")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    main_path = os.path.join(current_dir, "benchmark_main.py")
 
     with tempfile.NamedTemporaryFile('w+', suffix='.py', delete=False) as tmp_file:
         tmp_file.write(code)
