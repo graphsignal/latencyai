@@ -16,7 +16,7 @@ LatencyAI is an AI agent that optimizes any Python code for best performance usi
 * Set the OPEANAI_API_KEY environment variable
 * Run `python -m latencyai --runs=3 script-to-optimize.py`. Optionally set `--runs`, which is the number of optimization attempts, i.e. optimize-benchmark-profile iterations. The default is 2.
 
-The provided script should have a `main` function. The benchmark runner calls it multiple times, depending on it's execution time.
+The provided script should have a `main` function. The benchmark runner calls it multiple times, depending on its execution time.
 
 If optimization is successful, a file named `<original-script>_optimized.py` is be written to original script directory.
 
