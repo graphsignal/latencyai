@@ -13,10 +13,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-MAX_RETRIES = 2
-
-async def optimize_script(script_path):
-    logger.debug(f"Optimizing script: {script_path}")
+async def optimize_script(script_path, num_runs=2):
+    logger.debug(f"Optimizing script: {script_path}, num_runs: {num_runs}")
 
     chat = OpenAIChat("You are a helpful assistant who optimizes Python code.")
 
@@ -34,7 +32,7 @@ async def optimize_script(script_path):
         logger.debug(f"Benchmark error: {e}", exc_info=True)
         return
     results = []
-    for attempt in range(1, MAX_RETRIES + 1):
+    for attempt in range(1, num_runs + 1):
         try:
             logger.debug(f"Attempt {attempt}.")
 
@@ -94,9 +92,10 @@ async def main():
     # Argument parser setup
     parser = argparse.ArgumentParser(description="LatencyAI code optimized for CUDA")
     parser.add_argument("script", help="The Python script to load")
+    parser.add_argument("--runs", type=int, default=2, help="Number of optimization attempts to make")
     args = parser.parse_args()
 
-    await optimize_script(args.script)
+    await optimize_script(args.script, num_runs=args.runs)
 
 if __name__ == "__main__":
     asyncio.run(main())

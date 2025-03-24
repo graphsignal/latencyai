@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "latencyai"
+version = "0.1.0"
+description = "AI Performance Engineer"
+authors = ["Graphsignal, Inc. <devops@graphsignal.com>"]
+license = "MIT"
+homepage = "https://graphsignal.com"
+repository = "https://graphsignal.com"
+readme = "README.md"
+keywords = ["Performance engineering", "Performance tuning"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development",
+    "Topic :: System :: Monitoring",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+python-dateutil = "*"
+pydantic = ">2"
+typing-extensions = ">4.7.1"
+torch = "*"
+openai = "*"
+
+[tool.poetry.scripts]
+test = "tools.run_tests:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
